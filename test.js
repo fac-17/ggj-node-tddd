@@ -63,4 +63,16 @@ t.error(err);
 t.equal(res.text, 'Forbidden')
 t.end();
 })
-});
+})
+
+test('POST /blog without body',(t)=>{
+    supertest(router)
+    .post('/blog')
+    .set({password:'potato'})
+    .expect(302)
+    .end( (err,res)=>{
+        t.error(err);
+        t.deepEqual(JSON.parse(res.text),{Location:'/blog'});
+        t.end();
+    } )
+})

@@ -7,8 +7,13 @@ const router = (req,res)=>{
         res.end('unknown uri');
     } else if (req.url === '/blog') {
     if(req.url === '/blog' && req.method==='POST') {
-      res.writeHead(200) 
-      res.end(JSON.stringify(['a', 'b']));
+        if (req.headers.password==='potato'){
+            res.writeHead(200) ;
+            res.end(JSON.stringify(['a', 'b']));
+        } else {
+            res.writeHead(403);
+            res.end('Forbidden');
+        }
       }else {
 
       res.writeHead(200);
