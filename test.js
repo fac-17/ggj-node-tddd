@@ -44,11 +44,23 @@ test('GET /blog',(t)=>{
 test('POST /blog', (t) => {
   supertest(router)
   .post('/blog')
+  .set({password:'potato'})
+  .send(['a', 'b'])
   .expect(200)
-  .expect("password", "potato")
   .end( (err, res) => {
     t.error(err);
     t.deepEqual(JSON.parse(res.text),['a', 'b']);
     t.end();
   })
 })
+
+test('POST /blog', (t) => {
+supertest(router)
+.post('/blog')
+.expect(403)
+.end((err, res)=>{
+t.error(err);
+t.equal(res.text, 'Forbidden')
+t.end();
+})
+});
