@@ -28,4 +28,15 @@ test('Elephant route', (t) => {
 				t.equal(res.text, 'unknown uri');
 				t.end();
 				});
-		});
+        });
+        
+test('GET /blog',(t)=>{
+    supertest(router)
+    .get('/blog')
+    .expect(200)
+    .end( (err,res)=>{
+        t.error(err);
+        t.deepEqual(JSON.parse(res.text),["one","two","three"]);
+        t.end();
+    })
+})
