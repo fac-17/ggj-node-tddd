@@ -17,4 +17,15 @@ test("Home route",(t)=>{
          t.equal(res.text,'Hello','Should contain "Hello"');
          t.end();
      })
-})
+});
+
+test('Elephant route', (t) => {
+		supertest(router)
+		.get('/elephants')
+		.expect(404)
+		.end((err, res) => {
+				t.error(err);
+				t.equal(res.text, 'unknown uri');
+				t.end();
+				});
+		});
