@@ -29,7 +29,7 @@ test('Elephant route', (t) => {
 				t.end();
 				});
         });
-        
+
 test('GET /blog',(t)=>{
     supertest(router)
     .get('/blog')
@@ -39,4 +39,16 @@ test('GET /blog',(t)=>{
         t.deepEqual(JSON.parse(res.text),["one","two","three"]);
         t.end();
     })
+})
+
+test('POST /blog', (t) => {
+  supertest(router)
+  .post('/blog')
+  .expect(200)
+  .expect("password", "potato")
+  .end( (err, res) => {
+    t.error(err);
+    t.deepEqual(JSON.parse(res.text),['a', 'b']);
+    t.end();
+  })
 })
