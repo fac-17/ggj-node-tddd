@@ -55,14 +55,14 @@ test('POST /blog', (t) => {
 })
 
 test('POST /blog', (t) => {
-supertest(router)
-.post('/blog')
-.expect(403)
-.end((err, res)=>{
-t.error(err);
-t.equal(res.text, 'Forbidden')
-t.end();
-})
+  supertest(router)
+  .post('/blog')
+  .expect(403)
+  .end((err, res)=>{
+    t.error(err);
+    t.equal(res.text, 'Forbidden')
+    t.end();
+  })
 })
 
 test('POST /blog without body',(t)=>{
